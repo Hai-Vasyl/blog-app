@@ -1,0 +1,37 @@
+@import url('../../index.scss');
+
+.container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+  background-color: #b8b8b854;
+  display: none;
+  animation: fade getTransition(primary);
+
+  &--active {
+    display: flex;
+  }
+
+  .modal {
+    min-width: 0;
+    display: none;
+
+    &--active {
+      display: flex;
+    }
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  } to {
+    opacity: 1;
+  }
+}

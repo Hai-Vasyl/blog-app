@@ -1,0 +1,11 @@
+@import '../../../../index.scss';
+
+.container {
+    background-color: transparent;
+    padding: 15px;
+    font-weight: bold;
+
+    &--active {
+        color: getColor(accent);
+    }
+}

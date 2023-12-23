@@ -1,0 +1,89 @@
+
+// constants
+
+$colors: (
+  primary: #e2f4ff8f,
+  primary-dark: #c7d7e08f,
+  secondary: #fff,
+  accent: #2c3494,
+);
+
+$fontSizes: (
+  primary: 1em,
+  secondary: 0.9em,
+  tiny: 0.8em
+);
+
+$fonts: (
+  primary: (
+    'Rethink Sans', sans-serif
+  ),
+);
+
+$transitions: (
+  primary: 0.3s ease
+);
+
+// functions
+
+@function getColor($color) {
+  @return map-get($colors, $color);
+}
+
+@function getTransitions($transition) {
+  @return map-get($transitions, $transition);
+}
+
+@function getFont($font) {
+  @return map-get($fonts, $font);
+}
+
+@function getFontSizes($fontSize) {
+  @return map-get($fontSizes, $fontSize);
+}
+
+// placeholders
+
+// %flex-center {
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+// }
+
+// main styles
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: getFont(primary);
+  background-color: getColor(primary);
+  font-size: getFontSizes(primary);
+}
+
+button,
+input,
+select {
+  border: none;
+  font-size: inherit;
+  font-family: inherit;
+  color: getColor(font);
+  outline: none;
+  background-color: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  color: getColor(accent);
+  text-decoration: none;
+  
+  &:hover {
+    color: getColor(accent-second);
+  }
+}

@@ -1,0 +1,32 @@
+@import "../../index.scss";
+
+.container {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    position: relative;
+    cursor: pointer;
+
+    .email {
+        position: absolute;
+        right: 60px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: getFontSizes(secondary);
+        visibility: hidden;
+        opacity: 0;
+        transition: getTransitions(primary);
+        background-color: getColor(secondary);
+        padding: 5px 10px;
+        border: 1px solid getColor(primary-dark);
+        margin-right: 10px;
+    }
+
+    &:hover {
+        .email {
+            visibility: visible;
+            opacity: 1;
+        }
+    }
+}
+
