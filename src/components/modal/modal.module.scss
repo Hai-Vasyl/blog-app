@@ -12,7 +12,7 @@
   z-index: 20;
   background-color: #b8b8b854;
   display: none;
-  animation: fade getTransition(primary);
+  animation: fade 1s ease;
 
   &--active {
     display: flex;
@@ -21,6 +21,7 @@
   .modal {
     min-width: 0;
     display: none;
+    animation: fade 1s ease;
 
     &--active {
       display: flex;

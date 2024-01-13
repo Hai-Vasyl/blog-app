@@ -1,24 +1,29 @@
 import React from "react";
-import { NavigationButtonComponent } from "./components";
-import { AvatarComponent } from "../avatar";
-import { LogoComponent } from "../logo";
+import { NavigationButton } from "./components";
+import { Avatar } from "../avatar";
+import { Logo } from "../logo";
 import styles from "./navigationBar.module.scss";
-import { useStore } from "../../redux";
-import { activateModal } from "../modal";
+import { ModalTypes, activateModal } from "../modal";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../redux";
+import { View } from "../base-components";
 
 const fetchUserData = {
   color: "#32a852",
   email: "some.random@gmail.com",
 };
 
-export const NavigationBarComponent = () => {
-  const { dispatch } = useStore();
+export const NavigationBar = () => {
+  const dispatch = useDispatch();
+  const modalState: RootState["modal"] = useSelector(({ modal }) => modal);
 
   const handleOpenCategoryModal = () => {
     dispatch(
-      activateModal(<div>some text here Lorem ipsum dolor site amet</div>)
+      activateModal({
+        Element: <div>some text here Lorem ipsum dolor site amet</div>,
+        type: ModalTypes.categorySelect,
+      })
     );
-    console.log("Category modal has been opened");
   };
 
   const handleOpenTagsModal = () => {
@@ -30,31 +35,28 @@ export const NavigationBarComponent = () => {
   };
 
   return (
-    <div className={styles.container}>
-      <div className={styles.navigation}>
-        <LogoComponent />
-        <div className={styles.buttons}>
-          <NavigationButtonComponent
+    <View className={styles.container}>
+      <View className={styles.navigation}>
+        <Logo />
+        <View className={styles.buttons}>
+          <NavigationButton
             label="Category"
-            isActivated
+            isActive={modalState.type === ModalTypes.categorySelect}
             onClick={handleOpenCategoryModal}
           />
-          <NavigationButtonComponent
-            label="Tags"
-            isActivated={false}
-            onClick={handleOpenTagsModal}
-          />
-          <NavigationButtonComponent
+          <NavigationButton
             label="Search"
-            isActivated={false}
+            isActive={modalState.type === ModalTypes.stringSearch}
             onClick={handleOpenSearchModal}
           />
-        </div>
-        <AvatarComponent
-          color={fetchUserData.color}
-          email={fetchUserData.email}
-        />
-      </div>
-    </div>
+          <NavigationButton
+            label="Tags"
+            isActive={modalState.type === ModalTypes.tagSearch}
+            onClick={handleOpenTagsModal}
+          />
+        </View>
+        <Avatar color={fetchUserData.color} email={fetchUserData.email} />
+      </View>
+    </View>
   );
 };

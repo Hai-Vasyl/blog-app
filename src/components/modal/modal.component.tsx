@@ -1,30 +1,35 @@
 import React from "react";
 import styles from "./modal.module.scss";
-import { useStore } from "../../redux";
+import { RootState } from "../../redux";
 import { deactivateModal } from "./modal.slice";
+import { useDispatch, useSelector } from "react-redux";
+import { View } from "../base-components";
+import { joinClass } from "../../helpers";
 
-export const ModalComponent = () => {
-  const {
-    dispatch,
-    state: { modal },
-  } = useStore();
+export const Modal = () => {
+  const dispatch = useDispatch();
+  const modalState: RootState["modal"] = useSelector(({ modal }) => modal);
 
   const handleCloseModal = () => {
     dispatch(deactivateModal());
   };
 
   return (
-    <div
-      className={`${styles.container} ${
-        modal.active && styles["container--active"]
-      }`}
+    <View
+      className={joinClass(
+        styles.container,
+        modalState.active && styles["container--active"]
+      )}
       onClick={handleCloseModal}
     >
-      <div
-        className={`${styles.modal} ${modal.active && styles["modal--active"]}`}
+      <View
+        className={joinClass(
+          styles.modal,
+          modalState.active && styles["modal--active"]
+        )}
       >
-        {modal.Element}
-      </div>
-    </div>
+        {modalState.Element}
+      </View>
+    </View>
   );
 };

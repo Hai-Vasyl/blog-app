@@ -1,18 +1,16 @@
 import React from "react";
 import styles from "./avatar.module.scss";
+import { View } from "../base-components/view";
 
-type AvatarComponentProps = {
+type AvatarProps = {
   email: string;
   color: string;
 };
 
-export const AvatarComponent: React.FC<AvatarComponentProps> = ({
-  email,
-  color,
-}) => {
+export const Avatar: React.FC<AvatarProps> = ({ email, color }) => {
   return (
-    <div style={{ backgroundColor: color }} className={styles.container}>
-      <div className={styles.email}>{email}</div>
-    </div>
+    <View style={{ backgroundColor: color }} className={styles.container}>
+      <View className={styles.email}>{email}</View>
+    </View>
   );
 };

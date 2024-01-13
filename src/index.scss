@@ -21,7 +21,7 @@ $fonts: (
 );
 
 $transitions: (
-  primary: 0.3s ease
+  primary: 2s ease,
 );
 
 // functions
@@ -86,4 +86,12 @@ a {
   &:hover {
     color: getColor(accent-second);
   }
+}
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 200,
+  'GRAD' 0,
+  'opsz' 24
 }
